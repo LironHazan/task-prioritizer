@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {DragulaService} from 'ng2-dragula';
+import {Areas} from './task/task.model';
 
 @Component({
   selector: 'app-tasks-board',
@@ -8,7 +9,7 @@ import {DragulaService} from 'ng2-dragula';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TasksBoardComponent implements OnInit {
-
+  public tasksAreas = Areas;
   //todo poc will be removed soon:
 
   vamps = [
