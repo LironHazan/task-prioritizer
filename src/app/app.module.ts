@@ -7,10 +7,14 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { DragulaModule } from 'ng2-dragula';
 import {FormsModule} from '@angular/forms';
+import { TasksBoardComponent } from './tasks-board/tasks-board.component';
+import { TaskComponent } from './tasks-board/task/task.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TasksBoardComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

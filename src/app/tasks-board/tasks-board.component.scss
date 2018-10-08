@@ -1,27 +1,18 @@
-/*
- * this helps the mirrored elements be the right size
- * and it's generally a good practice
- */
-* {
-  box-sizing: border-box;
-}
-
-.app-poc {
-
+.tasks-board {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  background-color: rebeccapurple;
+  width: 100%;
 }
 
 h3, h3 code {
   font-size: 20px;
 }
 
-.app-poc.flex {
-  display: flex;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.4);
-}
-
 .container {
   flex: 1;
+  height: 100%;
 }
 .container:not(:last-child) {
   margin-right: 8px;
@@ -32,6 +23,7 @@ h3, h3 code {
   list-style: none;
   padding: 8px;
   color: #222;
+  cursor: pointer;
 }
 
 .vamp:not(:last-child) {
@@ -39,3 +31,7 @@ h3, h3 code {
 }
 
 a:link, a:visited, a:hover, a:active { color: lightblue; }
+
+.draggable-area {
+  height: 50vh;
+}
