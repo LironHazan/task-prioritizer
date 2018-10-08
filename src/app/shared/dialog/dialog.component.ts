@@ -1,5 +1,6 @@
 import {Component, ComponentFactoryResolver, ComponentRef, Inject, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-dialog',
@@ -10,7 +11,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
   @ViewChild('target', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
   componentRef: ComponentRef<any>;
-
+  faTimesCircle = faTimesCircle;
   constructor(
     private resolver: ComponentFactoryResolver,
     @Inject(MAT_DIALOG_DATA) public data: any) { }

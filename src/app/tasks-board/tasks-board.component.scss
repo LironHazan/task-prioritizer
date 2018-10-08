@@ -1,8 +1,13 @@
+.add {
+  cursor: pointer;
+  margin: 10px;
+  font-size: 13px;
+}
 .tasks-board {
   display: flex;
   padding: 8px;
   justify-content: space-between;
-  background-color: rebeccapurple;
+  background-color: cornflowerblue;
   width: 100%;
 }
 h2 {

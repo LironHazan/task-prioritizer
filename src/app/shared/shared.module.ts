@@ -7,6 +7,7 @@ import {
   MatIconModule,
   MatDialogModule
 } from '@angular/material';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import {
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   declarations: [ DialogComponent],
   exports:      [
-    CommonModule, FormsModule],
+    CommonModule, FormsModule, FontAwesomeModule
+  ],
   entryComponents: [DialogComponent]
 
 })

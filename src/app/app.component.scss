@@ -1,0 +1,13 @@
+.login {
+  padding: 12rem;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  span {
+    display: inline-flex;
+    width: 99%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -4,7 +4,7 @@
   <textarea class="cdk-textarea-autosize" id="desc" [(ngModel)]="description"></textarea>
   <label for="selector"> Select Priority </label>
   <select id="selector" [(ngModel)]="selectedArea">
-    <option *ngFor="let area of data.data">{{area}}</option>
+    <option *ngFor="let area of areas">{{area}}</option>
   </select>
 
   <button class="mat-button" (click)="onSave()">Save</button>

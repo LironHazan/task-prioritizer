@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Task } from './task.model';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-task',
@@ -9,6 +10,9 @@ import { Task } from './task.model';
 export class TaskComponent implements OnInit {
   @Input() task: Task;
   @Output() notifyTaskRemoval = new EventEmitter();
+  @Output() notifyEdit = new EventEmitter();
+  faTrash = faTrash;
+  faPencilAlt = faPencilAlt;
 
   constructor() { }
 
@@ -17,6 +21,10 @@ export class TaskComponent implements OnInit {
 
   remove(event, task) {
     this.notifyTaskRemoval.emit(task);
+  }
+
+  edit(event, task) {
+    this.notifyEdit.emit(task);
   }
 
 }
