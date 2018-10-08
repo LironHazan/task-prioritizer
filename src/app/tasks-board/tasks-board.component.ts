@@ -1,6 +1,9 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {DragulaService} from 'ng2-dragula';
 import {Areas} from './task/task.model';
+import {DialogService} from '../shared/dialog/dialog.service';
+import {NewTaskComponent} from './new-task/new-task.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-tasks-board',
@@ -10,7 +13,16 @@ import {Areas} from './task/task.model';
 })
 export class TasksBoardComponent implements OnInit {
   public tasksAreas = Areas;
+  dialogServiceSubscription: Subscription;
+  private areaList = [Areas.importantNotUrgent,
+    Areas.importantUrgent,
+    Areas.urgentNotImportant,
+    Areas.notImportantNotUrgent];
+
   //todo poc will be removed soon:
+  //todo:
+  // 4 collections for each state
+  // when dragging and dropping should handle addition and removal accordigly
 
   vamps = [
     { name: "Bad Vamp", description: 'heythere'},
@@ -40,7 +52,8 @@ export class TasksBoardComponent implements OnInit {
     { name: "Deacon" }
   ];
 
-  constructor(private dragulaService: DragulaService) {
+  constructor(private dragulaService: DragulaService,
+              private dialogService: DialogService) {
     this.dragulaService.createGroup("VAMPIRES", {
       // ...
     });
@@ -54,7 +67,8 @@ export class TasksBoardComponent implements OnInit {
   }
 
   addNewTask(event) {
-    //popup dialog
+    this.dialogServiceSubscription = this.dialogService.open(NewTaskComponent, this.areaList)
+      .afterClosed().subscribe(restut => console.log(restut));
   }
 
 }

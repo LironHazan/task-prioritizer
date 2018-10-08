@@ -1,0 +1,12 @@
+<div class="new-task">
+  <input [(ngModel)]="name" type="text" placeholder="Enter title">
+  <label for="desc"></label>
+  <textarea class="cdk-textarea-autosize" id="desc" [(ngModel)]="description"></textarea>
+
+  <select [(ngModel)]="selectedArea">
+    <option *ngFor="let area of data.data">{{area}}</option>
+  </select>
+
+  <button class="mat-button" (click)="onSave()">Save</button>
+</div>
+

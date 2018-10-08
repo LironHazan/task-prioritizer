@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import { Task } from './task.model';
 
 @Component({
   selector: 'app-task',
@@ -7,6 +8,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskComponent implements OnInit {
+  @Input() task: Task;
 
   constructor() { }
 
