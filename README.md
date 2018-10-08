@@ -1,5 +1,20 @@
 # TaskPrioritizer
 
+** Configure:
+- Add keys.ts file which exports your firebase conf as follows:
+
+` export const firebaseConf = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: ""
+}; `
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
