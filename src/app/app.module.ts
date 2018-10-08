@@ -5,6 +5,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { DragulaModule } from 'ng2-dragula';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
+    DragulaModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

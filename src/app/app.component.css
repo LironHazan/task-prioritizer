@@ -1,0 +1,41 @@
+/*
+ * this helps the mirrored elements be the right size
+ * and it's generally a good practice
+ */
+* {
+  box-sizing: border-box;
+}
+
+.app-poc {
+
+}
+
+h3, h3 code {
+  font-size: 20px;
+}
+
+.app-poc.flex {
+  display: flex;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.container {
+  flex: 1;
+}
+.container:not(:last-child) {
+  margin-right: 8px;
+}
+
+.vamp {
+  background: rgba(255, 255, 255, 0.4);
+  list-style: none;
+  padding: 8px;
+  color: #222;
+}
+
+.vamp:not(:last-child) {
+  border-bottom: 1px solid #777;
+}
+
+a:link, a:visited, a:hover, a:active { color: lightblue; }

@@ -13,7 +13,9 @@
 }; `
 
 
-
+** third parties:
+- firebase
+- ng2-dragula (https://stackblitz.com/edit/ng2-dragula-base?file=src%2Fapp%2Fapp.component.ts)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
