@@ -16,16 +16,12 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   public faPlusCircle = faPlusCircle;
   public tasksAreas = Areas;
   private dialogServiceSubscription: Subscription;
+  private dragulaServiceSubscription: Subscription;
   private areaList = [Areas.importantNotUrgent,
     Areas.importantUrgent,
     Areas.urgentNotImportant,
     Areas.notImportantNotUrgent];
   private tasks: Task[];
-
-  //todo:
-  // 4 collections for each state
-  // when dragging and dropping should handle addition and removal accordigly
-
   public importantNotUrgent: Task[] = [];
   public importantUrgent: Task[] = [];
   public urgentNotImportant: Task[] = [];
@@ -35,8 +31,8 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
               private dialogService: DialogService,
               private tasksBoardServiceService: TasksBoardServiceService) {
     this.dragulaService.createGroup("TASKS", {});
-    this.dragulaService.dropModel("TASKS").subscribe(args => {
-
+    this.dragulaServiceSubscription = this.dragulaService.dropModel("TASKS")
+      .subscribe(args => {
       this.tasks = this.updateTasksAreaOnDrag(args);
       console.log(this.tasks);
       // call firebase service and update
@@ -115,6 +111,10 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.dialogServiceSubscription) {
       this.dialogServiceSubscription.unsubscribe();
+    }
+    this.dragulaService.destroy("TASKS");
+    if (this.dragulaServiceSubscription) {
+      this.dragulaServiceSubscription.unsubscribe();
     }
   }
 }

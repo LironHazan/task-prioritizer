@@ -12,7 +12,7 @@
   messagingSenderId: ""
 }; `
 
-
+** start the project by running npm run
 ** third parties:
 - firebase
 - ng2-dragula (https://stackblitz.com/edit/ng2-dragula-base?file=src%2Fapp%2Fapp.component.ts)

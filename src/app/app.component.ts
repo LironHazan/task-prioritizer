@@ -32,6 +32,7 @@ export class AppComponent {
   }
   faSign = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
+
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }

@@ -10,6 +10,7 @@ describe('TasksBoardServiceService', () => {
   });
 
   it('should be created', inject([TasksBoardServiceService], (service: TasksBoardServiceService) => {
-    expect(service).toBeTruthy();
+    const filteredTasks = service.filterTasksById([{id: 111, name: 'woo', description: 'fff'}], 111);
+    expect(filteredTasks.length === 0).toBeTruthy();
   }));
 });
