@@ -1,3 +1,5 @@
-<p>
-  task works!
-</p>
+<div>
+  <div>{{ task.name }}</div>
+  <div>{{ task.description }}</div>
+  <a (click)="remove($event, task)">remove task</a>
+</div>

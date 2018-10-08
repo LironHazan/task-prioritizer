@@ -10,11 +10,15 @@ export class NewTaskComponent implements OnInit {
   public name: string;
   public description: string;
   public selectedArea: string;
+  private id: number;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
               private dialogRef: MatDialogRef<NewTaskComponent>) { }
 
   ngOnInit() {
+    // todo: temp  will be removed when adding server side
+
+    this.id = new Date().getTime();
     this.name = '';
     this.description = '';
     this.selectedArea = '';
@@ -22,7 +26,7 @@ export class NewTaskComponent implements OnInit {
 
   onSave() {
     this.dialogRef.close({
-      name: this.name, description: this.description, area: this.selectedArea
+      id: this.id, name: this.name, description: this.description, area: this.selectedArea
     });
   }
 }
