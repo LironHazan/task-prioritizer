@@ -52,4 +52,8 @@ export class TasksBoardComponent implements OnInit {
   ngOnInit() {
   }
 
+  addNewTask(event) {
+    //popup dialog
+  }
+
 }

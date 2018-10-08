@@ -1,31 +1,33 @@
+<button class="add" (click)="addNewTask($event)">Add new task</button>
 <div class="tasks-board">
-  <section class="container" >
-    <h2>important & urgent </h2>
-    <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
-      <div class="vamp" *ngFor="let vamp of vamps">{{ vamp.name }}</div>
-    </div>
-  </section>
+    <section class="container" >
+      <h2>important & urgent </h2>
+      <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
+        <div class="vamp" *ngFor="let vamp of vamps">{{ vamp.name }}</div>
+      </div>
+    </section>
 
-  <section class="container">
-    <h2>urgent and not important </h2>
-    <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
-      <div class="vamp" *ngFor="let vamp of vamps2">{{ vamp.name }}</div>
-    </div>
-  </section>
+    <section class="container">
+      <h2>urgent and not important </h2>
+      <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
+        <div class="vamp" *ngFor="let vamp of vamps2">{{ vamp.name }}</div>
+      </div>
+    </section>
 
-  <section class="container">
-    <h2>important and not urgent</h2>
-    <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
-      <div class="vamp" *ngFor="let vamp of vamps3">{{ vamp.name }}</div>
-    </div>
-  </section>
+    <section class="container">
+      <h2>important and not urgent</h2>
+      <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
+        <div class="vamp" *ngFor="let vamp of vamps3">{{ vamp.name }}</div>
+      </div>
+    </section>
 
-  <section class="container">
-    <h2> not important and not urgent</h2>
-    <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
-      <div class="vamp" *ngFor="let vamp of vamps4">{{ vamp.name }}</div>
-    </div>
-  </section>
+    <section class="container">
+      <h2> not important and not urgent</h2>
+      <div class="draggable-area" dragula="VAMPIRES" [(dragulaModel)]="vamps">
+        <div class="vamp" *ngFor="let vamp of vamps4">{{ vamp.name }}</div>
+      </div>
+    </section>
 
-</div>
+  </div>
+
 

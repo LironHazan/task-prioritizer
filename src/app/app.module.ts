@@ -9,6 +9,7 @@ import { DragulaModule } from 'ng2-dragula';
 import {FormsModule} from '@angular/forms';
 import { TasksBoardComponent } from './tasks-board/tasks-board.component';
 import { TaskComponent } from './tasks-board/task/task.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TaskComponent } from './tasks-board/task/task.component';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     FormsModule,
