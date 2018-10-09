@@ -1,5 +1,7 @@
 # TaskPrioritizer
 
+[Demo app](https://task-prioritizer.firebaseapp.com/)
+
 ** Configure:
 - Add keys.ts file which exports your firebase conf as follows:
 
