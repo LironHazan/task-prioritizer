@@ -1,8 +1,9 @@
 export interface Task {
-  id: number;
+  id?: string;
   name: string;
   description: string;
   area: string;
+  openedBy: string;
 }
 
 export enum Areas {

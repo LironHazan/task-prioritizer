@@ -1,6 +1,7 @@
 <div class="task">
   <div>{{ task.name }}</div>
   <div>{{ task.description }}</div>
+  <p>Opened by: {{task.openedBy}}</p>
   <div class="actions">
     <a (click)="remove($event, task)"><fa-icon [icon]="faTrash"></fa-icon> Remove task</a>
     <a (click)="edit($event, task)"><fa-icon [icon]="faPencilAlt"></fa-icon>Edit task</a>

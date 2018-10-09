@@ -1,5 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {UserStoreService} from '../../user-store.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-new-task',
@@ -11,13 +13,19 @@ export class NewTaskComponent implements OnInit {
   public description: string;
   public selectedArea: string;
   public areas: string[];
-  private id: number;
+  public openedBy: string;
+  private userSubscription: Subscription;
+  private id: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
-              private dialogRef: MatDialogRef<NewTaskComponent>) { }
+              private dialogRef: MatDialogRef<NewTaskComponent>,
+              private userStoreService: UserStoreService) { }
 
   ngOnInit() {
-    // todo: temp, id will be removed when adding server side
+    this.userSubscription = this.userStoreService.getUserDetails()
+      .subscribe(user => {
+        this.openedBy = user.email;
+      });
     const {data} = this.data;
     this.areas = data.areas || data;
     const taskToEdit = data.task;
@@ -27,7 +35,6 @@ export class NewTaskComponent implements OnInit {
       this.description = taskToEdit.description;
       this.selectedArea = taskToEdit.area;
     } else {
-      this.id = new Date().getTime();
       this.name = '';
       this.description = '';
       this.selectedArea = '';
@@ -35,8 +42,12 @@ export class NewTaskComponent implements OnInit {
   }
 
   onSave() {
-    this.dialogRef.close({
-      id: this.id, name: this.name, description: this.description, area: this.selectedArea
-    });
+    const newItem = {name: this.name, description: this.description, area: this.selectedArea, openedBy: this.openedBy};
+    if (this.id) {
+      const editedItem = Object.assign(newItem, {id: this.id});
+      this.dialogRef.close(editedItem);
+      return;
+    }
+    this.dialogRef.close(newItem);
   }
 }
