@@ -103,8 +103,10 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
 
   private updateTasksAreaOnDrag(eventArgs) {
     const tasks = this.tasks.filter(task => task.id !== eventArgs.item.id);
+    this.removeItemFromDraggableGroup(eventArgs.item);
     eventArgs.item.area = eventArgs.target.id;
     tasks.push(eventArgs.item);
+    this.addItemToDraggableGroup(eventArgs.item);
     return tasks;
   }
 
