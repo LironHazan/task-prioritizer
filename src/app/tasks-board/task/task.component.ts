@@ -19,11 +19,11 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
-  remove(event, task) {
+  remove(event, task: Task) {
     this.notifyTaskRemoval.emit(task);
   }
 
-  edit(event, task) {
+  edit(event, task: Task) {
     this.notifyEdit.emit(task);
   }
 

@@ -5,7 +5,7 @@
 <div class="tasks-board">
     <section class="container" >
       <h2>{{tasksAreas.importantNotUrgent}} </h2>
-      <div id="importantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantNotUrgent">
+      <div [id]="tasksAreas.importantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantNotUrgent">
         <div class="vamp" *ngFor="let task of importantNotUrgent">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
@@ -14,7 +14,7 @@
 
     <section class="container">
       <h2>{{tasksAreas.importantUrgent}} </h2>
-      <div id="importantUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantUrgent">
+      <div [id]="tasksAreas.importantUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantUrgent">
         <div class="vamp" *ngFor="let task of importantUrgent">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
@@ -23,7 +23,7 @@
 
     <section class="container">
       <h2>{{tasksAreas.urgentNotImportant}}</h2>
-      <div id="urgentNotImportant" class="draggable-area" dragula="TASKS" [(dragulaModel)]="urgentNotImportant">
+      <div [id]="tasksAreas.urgentNotImportant" class="draggable-area" dragula="TASKS" [(dragulaModel)]="urgentNotImportant">
         <div class="vamp" *ngFor="let task of urgentNotImportant">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
@@ -32,7 +32,7 @@
 
     <section class="container">
       <h2> {{tasksAreas.notImportantNotUrgent}}</h2>
-      <div id="notImportantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="notImportantNotUrgent">
+      <div [id]="tasksAreas.notImportantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="notImportantNotUrgent">
         <div class="vamp" *ngFor="let task of notImportantNotUrgent">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
