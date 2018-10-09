@@ -3,6 +3,7 @@ export interface Task {
   name: string;
   description: string;
   area: string;
+  openedBy: string;
 }
 
 export enum Areas {

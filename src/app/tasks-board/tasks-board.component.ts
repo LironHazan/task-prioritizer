@@ -3,12 +3,13 @@ import {DragulaService} from 'ng2-dragula';
 import {Areas, Task} from './task/task.model';
 import {DialogService} from '../shared/dialog/dialog.service';
 import {NewTaskComponent} from './new-task/new-task.component';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {TasksBoardServiceService} from './tasks-board-service.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import {map} from 'rxjs/operators';
+import {UserStoreService} from '../user-store.service';
 
 @Component({
   selector: 'app-tasks-board',
@@ -31,6 +32,7 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   public importantUrgent: Task[] = [];
   public urgentNotImportant: Task[] = [];
   public notImportantNotUrgent: Task[] = [];
+  public user$: Observable<any>;
 
   constructor(private dragulaService: DragulaService,
               private dialogService: DialogService,

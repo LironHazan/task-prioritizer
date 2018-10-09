@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import {  faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import {  faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {UserStoreService} from './user-store.service';
 
 @Component({
   selector: 'app-root',
@@ -28,13 +29,21 @@ import {  faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth,
+              private userStoreService: UserStoreService) {
   }
   faSign = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
 
   login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    let email;
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+      .then(res => {
+        const { user } = res;
+        email = user.email;
+        this.userStoreService.setUserDetails({email});
+      })
+      .catch(err => console.log(err));
   }
   logout() {
     this.afAuth.auth.signOut();
