@@ -4,10 +4,22 @@
 .app-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  app-tasks-board {
+    height: 100%;
+    padding-top: 1rem;
+  }
   span {
     display: inline-flex;
-    width: 99%;
     justify-content: space-between;
     align-items: center;
+    background-color: aliceblue;
+  }
+  .greet {
+    padding-left: 1rem;
+  }
+  .logout-link {
+    padding-right: 10px;
+    cursor: pointer;
   }
 }

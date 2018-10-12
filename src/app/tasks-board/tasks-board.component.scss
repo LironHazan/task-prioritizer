@@ -6,15 +6,12 @@
 .tasks-board {
   display: flex;
   padding: 8px;
-  justify-content: space-between;
-  background-color: cornflowerblue;
-  width: 100%;
 }
-h2 {
+
+.priority-title {
   text-transform: capitalize;
-}
-h3, h3 code {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
@@ -25,7 +22,7 @@ h3, h3 code {
   margin-right: 8px;
 }
 
-.vamp {
+.task {
   background: rgba(255, 255, 255, 0.4);
   list-style: none;
   padding: 8px;
@@ -33,7 +30,7 @@ h3, h3 code {
   cursor: pointer;
 }
 
-.vamp:not(:last-child) {
+.task:not(:last-child) {
   border-bottom: 1px solid #777;
 }
 

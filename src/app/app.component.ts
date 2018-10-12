@@ -10,10 +10,10 @@ import {UserStoreService} from './user-store.service';
   template: `
     <div class="app-container" *ngIf="afAuth.user | async as user; else showLogin">
       <span>
-        <h2>Hello {{ user.displayName }}!</h2>
-        <button (click)="logout()">Logout
+        <h2 class="greet">Hello {{ user.displayName }}!</h2>
+        <a class="logout-link" (click)="logout()">Logout
           <fa-icon [icon]="faSign"></fa-icon>
-        </button>
+        </a>
       </span>
       <app-tasks-board></app-tasks-board>
     </div>
