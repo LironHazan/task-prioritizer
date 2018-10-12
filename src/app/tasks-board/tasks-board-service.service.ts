@@ -22,4 +22,8 @@ export class TasksBoardServiceService {
     });
   }
 
+  public existsOnDraggableGroup(group, task): boolean {
+    return group.some(_item => _item.id === task.id);
+  }
+
 }

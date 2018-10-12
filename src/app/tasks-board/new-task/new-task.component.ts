@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserStoreService} from '../../user-store.service';
 import {Subscription} from 'rxjs';
@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './new-task.component.html',
   styleUrls: ['./new-task.component.scss']
 })
-export class NewTaskComponent implements OnInit {
+export class NewTaskComponent implements OnInit, OnDestroy {
   public name: string;
   public description: string;
   public selectedArea: string;
@@ -49,5 +49,9 @@ export class NewTaskComponent implements OnInit {
       return;
     }
     this.dialogRef.close(newItem);
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) this.userSubscription.unsubscribe();
   }
 }

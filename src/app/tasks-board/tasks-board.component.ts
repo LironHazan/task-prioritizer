@@ -60,6 +60,7 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
       this.addItemToDraggableGroup(task);
     }
   }
+
   removeTask(task) {
     this.removeItemFromDraggableGroup(task);
     this.tasksCollectionRef.doc(task.id).delete();
@@ -85,19 +86,19 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
     let task;
     switch (newTask.area.trim()) {
       case (Areas.importantNotUrgent.trim()):
-        task = this.importantNotUrgent.find(_item => _item.id === newTask.id);
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantNotUrgent, newTask);
         if (!task ) this.importantNotUrgent.push(newTask);
         break;
       case (Areas.urgentNotImportant.trim()):
-        task = this.urgentNotImportant.find(_item => _item.id === newTask.id);
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.urgentNotImportant, newTask);
         if (!task) this.urgentNotImportant.push(newTask);
         break;
       case (Areas.notImportantNotUrgent.trim()):
-        task = this.notImportantNotUrgent.find(_item => _item.id === newTask.id);
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.notImportantNotUrgent, newTask);
         if (!task) this.notImportantNotUrgent.push(newTask);
         break;
       case (Areas.importantUrgent.trim()):
-        task = this.importantUrgent.find(_item => _item.id === newTask.id);
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantUrgent, newTask);
         if (!task) this.importantUrgent.push(newTask);
         break;
     }
