@@ -3,13 +3,12 @@ import {DragulaService} from 'ng2-dragula';
 import {Areas, Task} from './task/task.model';
 import {DialogService} from '../shared/dialog/dialog.service';
 import {NewTaskComponent} from './new-task/new-task.component';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {TasksBoardServiceService} from './tasks-board-service.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import {map} from 'rxjs/operators';
-import {UserStoreService} from '../user-store.service';
 
 @Component({
   selector: 'app-tasks-board',
@@ -32,7 +31,6 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   public importantUrgent: Task[] = [];
   public urgentNotImportant: Task[] = [];
   public notImportantNotUrgent: Task[] = [];
-  public user$: Observable<any>;
 
   constructor(private dragulaService: DragulaService,
               private dialogService: DialogService,
@@ -46,20 +44,15 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-     this.tasksCollectionRef = this.afs.collection<Task>('tasks');
-     this.tasksSubscription = this.tasksCollectionRef.snapshotChanges()
-      .pipe(map(actions => {
-      return actions.map(action => {
-        const data = action.payload.doc.data() as Task;
-        const id = action.payload.doc.id;
-        return { id, ...data };
+    this.tasksCollectionRef = this.afs.collection<Task>('tasks');
+    this.tasksSubscription = this.tasksCollectionRef.snapshotChanges()
+      .pipe(map(actions => this.tasksBoardServiceService.rebuildTasks(actions)))
+      .subscribe(tasks => {
+        this.tasks = tasks;
+        if (tasks.length > 0 ) {
+          this.initViewGroups(tasks);
+        }
       });
-    })).subscribe(tasks => {
-      this.tasks = tasks;
-      if (tasks.length > 0 ) {
-        this.initViewGroups(tasks);
-      }
-    });
   }
 
   initViewGroups(tasks) {
