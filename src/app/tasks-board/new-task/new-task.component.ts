@@ -30,6 +30,7 @@ export class NewTaskComponent implements OnInit, OnDestroy {
       .subscribe(user => {
         this.openedBy = user.email;
       });
+
     const {data} = this.data;
     if (data && data.task) {
       const {id, name, description, area} = data.task;
