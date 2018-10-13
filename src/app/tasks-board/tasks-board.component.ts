@@ -87,19 +87,19 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
     switch (newTask.area.trim()) {
       case (Areas.importantNotUrgent.trim()):
         task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantNotUrgent, newTask);
-        if (!task ) this.importantNotUrgent.push(newTask);
+        if (!task ) this.importantNotUrgent = [...this.importantNotUrgent, newTask];
         break;
       case (Areas.urgentNotImportant.trim()):
         task = this.tasksBoardServiceService.existsOnDraggableGroup(this.urgentNotImportant, newTask);
-        if (!task) this.urgentNotImportant.push(newTask);
+        if (!task) this.urgentNotImportant = [...this.urgentNotImportant, newTask];
         break;
       case (Areas.notImportantNotUrgent.trim()):
         task = this.tasksBoardServiceService.existsOnDraggableGroup(this.notImportantNotUrgent, newTask);
-        if (!task) this.notImportantNotUrgent.push(newTask);
+        if (!task) this.notImportantNotUrgent = [...this.notImportantNotUrgent, newTask];
         break;
       case (Areas.importantUrgent.trim()):
         task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantUrgent, newTask);
-        if (!task) this.importantUrgent.push(newTask);
+        if (!task) this.importantUrgent = [...this.importantUrgent, newTask];
         break;
     }
   }

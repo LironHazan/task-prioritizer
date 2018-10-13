@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import {  faSignInAlt } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,7 @@ import {UserStoreService} from './user-store.service';
       <span>
         <h2 class="greet">Hello {{ user.displayName }}!</h2>
         <a class="logout-link" (click)="logout()">Logout
-          <fa-icon [icon]="faSign"></fa-icon>
+          <fa-icon [icon]="faSignOutAlt"></fa-icon>
         </a>
       </span>
       <app-tasks-board></app-tasks-board>
@@ -28,12 +28,18 @@ import {UserStoreService} from './user-store.service';
   `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth,
               private userStoreService: UserStoreService) {
   }
+  user: string;
   faSign = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
+
+  ngOnInit() {
+    this.user = localStorage.getItem('user');
+    if (this.user) this.userStoreService.setUserDetails({email: this.user});
+  }
 
   login() {
     let email;
@@ -41,12 +47,22 @@ export class AppComponent {
       .then(res => {
         const { user } = res;
         email = user.email;
+        try {
+          localStorage.setItem('user', email);
+        } catch (e) {
+          console.log(e);
+          this.user = null;
+        }
         this.userStoreService.setUserDetails({email});
       })
       .catch(err => console.log(err));
   }
+
   logout() {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut()
+      .then(() => {
+        localStorage.removeItem('user');
+      }).catch(err => console.log(err));
   }
 
 }
