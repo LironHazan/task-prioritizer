@@ -31,12 +31,12 @@ export class NewTaskComponent implements OnInit, OnDestroy {
         this.openedBy = user.email;
       });
     const {data} = this.data;
-    const taskToEdit = data.task;
-    if (taskToEdit) {
-      this.id = taskToEdit.id;
-      this.name = taskToEdit.name;
-      this.description = taskToEdit.description;
-      this.selectedArea = taskToEdit.area;
+    if (data && data.task) {
+      const {id, name, description, area} = data.task;
+      this.id = id;
+      this.name = name;
+      this.description = description;
+      this.selectedArea = area;
     } else {
       this.name = '';
       this.description = '';
