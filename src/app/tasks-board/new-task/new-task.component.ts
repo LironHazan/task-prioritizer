@@ -2,6 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserStoreService} from '../../user-store.service';
 import {Subscription} from 'rxjs';
+import {Areas} from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -12,7 +13,10 @@ export class NewTaskComponent implements OnInit, OnDestroy {
   public name: string;
   public description: string;
   public selectedArea: string;
-  public areas: string[];
+  public areas: string[] = [Areas.importantNotUrgent,
+    Areas.importantUrgent,
+    Areas.urgentNotImportant,
+    Areas.notImportantNotUrgent];
   public openedBy: string;
   private userSubscription: Subscription;
   private id: string;
@@ -27,7 +31,6 @@ export class NewTaskComponent implements OnInit, OnDestroy {
         this.openedBy = user.email;
       });
     const {data} = this.data;
-    this.areas = data.areas || data;
     const taskToEdit = data.task;
     if (taskToEdit) {
       this.id = taskToEdit.id;

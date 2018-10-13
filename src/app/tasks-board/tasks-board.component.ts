@@ -22,10 +22,6 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   public tasksAreas = Areas;
   private dialogServiceSubscription: Subscription;
   private dragulaServiceSubscription: Subscription;
-  private areaList = [Areas.importantNotUrgent,
-    Areas.importantUrgent,
-    Areas.urgentNotImportant,
-    Areas.notImportantNotUrgent];
   private tasks: Task[];
   public importantNotUrgent: Task[] = [];
   public importantUrgent: Task[] = [];
@@ -67,7 +63,7 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   }
 
   editTask(task) {
-    this.dialogServiceSubscription = this.dialogService.open(NewTaskComponent, {areas: this.areaList, task})
+    this.dialogServiceSubscription = this.dialogService.open(NewTaskComponent, {task})
       .afterClosed().subscribe(taskToEdit => {
         this.tasksCollectionRef.doc(taskToEdit.id).update(taskToEdit);
         this.removeItemFromDraggableGroup(task);
@@ -75,7 +71,7 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   }
 
   addNewTask(event) {
-    this.dialogServiceSubscription = this.dialogService.open(NewTaskComponent, this.areaList)
+    this.dialogServiceSubscription = this.dialogService.open(NewTaskComponent, null)
       .afterClosed().subscribe(newTask => {
         this.tasksCollectionRef.add(newTask);
       });
