@@ -3,8 +3,11 @@
 
 html, body { height: 100%;
 }
-body { margin: 0;  font-family: "Andale Mono";
+body {
+  margin: 0;
+  font-family: "Andale Mono";
   background-color: cornflowerblue;
+  display: flex;
 }
 input {
   outline: none;
