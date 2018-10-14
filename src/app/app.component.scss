@@ -6,8 +6,10 @@
   flex-direction: column;
   height: 100%;
   app-tasks-board {
-    height: 100%;
     padding-top: 1rem;
+    overflow: hidden;
+    height: 85%;
+    background-color: aliceblue;
   }
   span {
     display: inline-flex;

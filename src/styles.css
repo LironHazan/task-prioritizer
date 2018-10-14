@@ -6,8 +6,9 @@ html, body { height: 100%;
 body {
   margin: 0;
   font-family: "Andale Mono";
-  background-color: cornflowerblue;
+  background-color: aliceblue;
   display: flex;
+  overflow: hidden;
 }
 input {
   outline: none;

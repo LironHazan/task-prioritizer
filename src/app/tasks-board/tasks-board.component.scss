@@ -6,6 +6,10 @@
 .tasks-board {
   display: flex;
   padding: 8px;
+  overflow: auto;
+  height: 100%;
+  margin-top: 10px;
+  background-color: cornflowerblue;
 }
 
 .priority-title {
