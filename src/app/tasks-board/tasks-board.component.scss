@@ -27,13 +27,14 @@
 }
 
 .task {
+  box-sizing: border-box; // prevents the mirrored copy from changing dimensions
+  margin-top: 14px;
+  padding: 8px;
+  word-wrap: break-word;
   background: rgba(255, 255, 255, 0.4);
   list-style: none;
-  padding: 8px;
   color: #222;
   cursor: pointer;
-  margin-top: 4px;
-  word-wrap: break-word;
 }
 
 .task:not(:last-child) {
