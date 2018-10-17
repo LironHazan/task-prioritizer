@@ -20,6 +20,7 @@
 .container {
   flex: 1;
   height: 100%;
+  max-width: 26em;
 }
 .container:not(:last-child) {
   margin-right: 8px;
@@ -32,6 +33,7 @@
   color: #222;
   cursor: pointer;
   margin-top: 4px;
+  word-wrap: break-word;
 }
 
 .task:not(:last-child) {
