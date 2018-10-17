@@ -9,7 +9,10 @@ import {DialogComponent} from './dialog.component';
 export class DialogService {
   constructor(public dialog: MatDialog) { }
 
-  private conf = { autoFocus: true };
+  private conf = {
+    autoFocus: true,
+    maxWidth: getComputedStyle(document.documentElement).getPropertyValue('--max-dialog-width')
+  };
 
   private mediumConf = {height: 'auto', width: '70%', ...this.conf};
 

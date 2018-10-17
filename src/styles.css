@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%;
+:root {
+  --max-dialog-width: 36em;
+}
+html, body {
+  height: 100%;
 }
 body {
   margin: 0;
@@ -27,7 +31,7 @@ select {
 }
 
 mat-dialog-container {
-  max-width: 36em;
+  max-width: var(--max-dialog-width);
   margin-left: auto;
   margin-right: auto;
 }
