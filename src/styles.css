@@ -10,6 +10,12 @@ body {
   display: flex;
   overflow: hidden;
 }
+app-root {
+  width: 100%;
+}
+a {
+  transition: color 150ms ease-in;
+}
 input {
   outline: none;
 }
@@ -18,4 +24,10 @@ textarea {
 }
 select {
   outline: none;
+}
+
+mat-dialog-container {
+  max-width: 36em;
+  margin-left: auto;
+  margin-right: auto;
 }
