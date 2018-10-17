@@ -41,7 +41,7 @@ export class NewTaskComponent implements OnInit, OnDestroy {
     } else {
       this.name = '';
       this.description = '';
-      this.selectedArea = '';
+      this.selectedArea = Areas.importantNotUrgent;
     }
   }
 
