@@ -7,8 +7,8 @@ export interface Task {
 }
 
 export enum Areas {
-  importantUrgent = 'important & urgent',
-  urgentNotImportant = 'urgent & not important',
-  importantNotUrgent = 'important & not urgent',
-  notImportantNotUrgent = 'not important & not urgent',
+  importantUrgent = 'Important & Urgent',
+  urgentNotImportant = 'Urgent & Not Important',
+  importantNotUrgent = 'Important & Not Urgent',
+  notImportantNotUrgent = 'Not Important & Not Urgent',
 }
