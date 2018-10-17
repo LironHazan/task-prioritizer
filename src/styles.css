@@ -3,6 +3,8 @@
 
 :root {
   --max-dialog-width: 36em;
+  --tasks-h-margin: 20px;
+  --page-h-margin: 20px;
 }
 html, body {
   height: 100%;

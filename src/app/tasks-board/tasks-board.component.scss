@@ -1,11 +1,11 @@
 .add {
   cursor: pointer;
-  margin: 10px;
+  margin: 10px var(--page-h-margin);
   font-size: 13px;
 }
 .tasks-board {
   display: flex;
-  padding: 8px;
+  padding: 8px var(--page-h-margin);
   overflow: auto;
   height: 100%;
   margin-top: 10px;
@@ -23,7 +23,7 @@
   max-width: 26em;
 }
 .container:not(:last-child) {
-  margin-right: 8px;
+  margin-right: var(--tasks-h-margin);
 }
 
 .task {
