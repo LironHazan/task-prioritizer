@@ -1,12 +1,12 @@
-<div class="new-task">
-  <input [(ngModel)]="name" type="text" placeholder="Enter title">
+<form class="new-task" name="new-task" (submit)="onSave(); $event.preventDefault()">
+  <input [(ngModel)]="name" name="name" type="text" placeholder="Enter title">
   <label for="desc"> Add description</label>
-  <textarea class="cdk-textarea-autosize" id="desc" [(ngModel)]="description"></textarea>
+  <textarea class="cdk-textarea-autosize" id="desc" name="desc" [(ngModel)]="description"></textarea>
   <label for="selector"> Select Priority </label>
-  <select id="selector" [(ngModel)]="selectedArea">
+  <select id="selector" [(ngModel)]="selectedArea" name="area">
     <option *ngFor="let area of areas">{{area}}</option>
   </select>
 
-  <button class="mat-button" (click)="onSave()">Save</button>
-</div>
+  <button class="mat-button" type="submit">Save</button>
+</form>
 

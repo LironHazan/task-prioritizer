@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%;
+:root {
+  --max-dialog-width: 36em;
+  --tasks-h-margin: 20px;
+  --page-h-margin: 20px;
+}
+html, body {
+  height: 100%;
 }
 body {
   margin: 0;
@@ -9,6 +15,12 @@ body {
   background-color: aliceblue;
   display: flex;
   overflow: hidden;
+}
+app-root {
+  width: 100%;
+}
+a {
+  transition: color 150ms ease-in;
 }
 input {
   outline: none;
@@ -18,4 +30,13 @@ textarea {
 }
 select {
   outline: none;
+}
+input, textarea, select, button {
+  border: 1px solid #d0d0d0;
+}
+
+mat-dialog-container {
+  max-width: var(--max-dialog-width);
+  margin-left: auto;
+  margin-right: auto;
 }
