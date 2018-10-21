@@ -121,13 +121,14 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   }
 
   private updateTasksAreaOnDrag(eventArgs) {
-    eventArgs.item.areaType = +eventArgs.source.id;
-    this.removeItemFromDraggableGroup(eventArgs.item);
+    const task: Task = eventArgs.item;
+    task.areaType = +eventArgs.source.id;
+    this.removeItemFromDraggableGroup(task);
 
-    eventArgs.item.areaType = +eventArgs.target.id;
-    eventArgs.item.area = areas.find(area => area.id == eventArgs.target.id).value;
+    task.areaType = +eventArgs.target.id;
+    task.area = areas.find(area => area.id === task.areaType).value;
     // targe.id is actually the dom id attribute value
-    this.tasksCollectionRef.doc(eventArgs.item.id).update(eventArgs.item);
+    this.tasksCollectionRef.doc(task.id).update(task);
   }
 
   ngOnDestroy() {
