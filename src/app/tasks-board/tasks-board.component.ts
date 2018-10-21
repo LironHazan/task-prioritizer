@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DragulaService} from 'ng2-dragula';
-import {Areas, Task} from './task/task.model';
+import {Areas, AreaType, Task} from './task/task.model';
 import {DialogService} from '../shared/dialog/dialog.service';
 import {NewTaskComponent} from './new-task/new-task.component';
 import {Subscription} from 'rxjs';
@@ -9,6 +9,7 @@ import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {TasksBoardServiceService} from './tasks-board-service.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import {map} from 'rxjs/operators';
+import {areas} from './tasks.const';
 
 @Component({
   selector: 'app-tasks-board',
@@ -20,6 +21,7 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   private tasksSubscription: Subscription;
   public faPlusCircle = faPlusCircle;
   public tasksAreas = Areas;
+  public taskAreaType = AreaType;
   private dialogServiceSubscription: Subscription;
   private dragulaServiceSubscription: Subscription;
   private tasks: Task[];
@@ -65,8 +67,10 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
   editTask(task) {
     this.dialogServiceSubscription = this.dialogService.open(NewTaskComponent, {task})
       .afterClosed().subscribe(taskToEdit => {
-        this.tasksCollectionRef.doc(taskToEdit.id).update(taskToEdit);
-        this.removeItemFromDraggableGroup(task);
+        if (taskToEdit) {
+          this.tasksCollectionRef.doc(taskToEdit.id).update(taskToEdit);
+          this.removeItemFromDraggableGroup(task);
+        }
       });
   }
 
@@ -77,51 +81,51 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
       });
   }
 
-  private addItemToDraggableGroup(newTask) {
-    if (!newTask.area) return;
+  private addItemToDraggableGroup(taskItem) {
     let task;
-    switch (newTask.area.trim()) {
-      case (Areas.importantNotUrgent.trim()):
-        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantNotUrgent, newTask);
-        if (!task ) this.importantNotUrgent = [...this.importantNotUrgent, newTask];
+    switch (taskItem.areaType) {
+      case (AreaType.importantNotUrgent):
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantNotUrgent, taskItem);
+        if (!task ) this.importantNotUrgent = [...this.importantNotUrgent, taskItem];
         break;
-      case (Areas.urgentNotImportant.trim()):
-        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.urgentNotImportant, newTask);
-        if (!task) this.urgentNotImportant = [...this.urgentNotImportant, newTask];
+      case (AreaType.urgentNotImportant):
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.urgentNotImportant, taskItem);
+        if (!task) this.urgentNotImportant = [...this.urgentNotImportant, taskItem];
         break;
-      case (Areas.notImportantNotUrgent.trim()):
-        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.notImportantNotUrgent, newTask);
-        if (!task) this.notImportantNotUrgent = [...this.notImportantNotUrgent, newTask];
+      case (AreaType.notImportantNotUrgent):
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.notImportantNotUrgent, taskItem);
+        if (!task) this.notImportantNotUrgent = [...this.notImportantNotUrgent, taskItem];
         break;
-      case (Areas.importantUrgent.trim()):
-        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantUrgent, newTask);
-        if (!task) this.importantUrgent = [...this.importantUrgent, newTask];
+      case (AreaType.importantUrgent):
+        task = this.tasksBoardServiceService.existsOnDraggableGroup(this.importantUrgent, taskItem);
+        if (!task) this.importantUrgent = [...this.importantUrgent, taskItem];
         break;
     }
   }
 
-  private removeItemFromDraggableGroup(task) {
-    switch (task.area.trim()) {
-      case (Areas.importantNotUrgent.trim()):
-        this.importantNotUrgent = this.importantNotUrgent.filter(_task => _task.id !== task.id);
+  private removeItemFromDraggableGroup(taskItem) {
+    switch (taskItem.areaType) {
+      case (AreaType.importantNotUrgent):
+        this.importantNotUrgent = this.importantNotUrgent.filter(_task => _task.id !== taskItem.id);
         break;
-      case (Areas.urgentNotImportant.trim()):
-        this.urgentNotImportant = this.urgentNotImportant.filter(_task => _task.id !== task.id);
+      case (AreaType.urgentNotImportant):
+        this.urgentNotImportant = this.urgentNotImportant.filter(_task => _task.id !== taskItem.id);
         break;
-      case (Areas.notImportantNotUrgent.trim()):
-        this.notImportantNotUrgent = this.notImportantNotUrgent.filter(_task => _task.id !== task.id);
+      case (AreaType.notImportantNotUrgent):
+        this.notImportantNotUrgent = this.notImportantNotUrgent.filter(_task => _task.id !== taskItem.id);
         break;
-      case (Areas.importantUrgent.trim()):
-        this.importantUrgent = this.importantUrgent.filter(_task => _task.id !== task.id);
+      case (AreaType.importantUrgent):
+        this.importantUrgent = this.importantUrgent.filter(_task => _task.id !== taskItem.id);
         break;
     }
   }
 
   private updateTasksAreaOnDrag(eventArgs) {
-    eventArgs.item.area = eventArgs.source.id;
+    eventArgs.item.areaType = +eventArgs.source.id;
     this.removeItemFromDraggableGroup(eventArgs.item);
 
-    eventArgs.item.area = eventArgs.target.id;
+    eventArgs.item.areaType = +eventArgs.target.id;
+    eventArgs.item.area = areas.find(area => area.id == eventArgs.target.id).value;
     // targe.id is actually the dom id attribute value
     this.tasksCollectionRef.doc(eventArgs.item.id).update(eventArgs.item);
   }
