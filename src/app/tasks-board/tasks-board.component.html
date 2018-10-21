@@ -5,7 +5,7 @@
 <div class="tasks-board">
     <section class="container" >
       <h4 class="priority-title">{{tasksAreas.importantNotUrgent}} </h4>
-      <div [id]="tasksAreas.importantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantNotUrgent">
+      <div [id]="taskAreaType.importantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantNotUrgent">
         <div class="task" *ngFor="let task of importantNotUrgent">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
@@ -14,7 +14,7 @@
 
     <section class="container">
       <h4 class="priority-title">{{tasksAreas.importantUrgent}} </h4>
-      <div [id]="tasksAreas.importantUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantUrgent">
+      <div [id]="taskAreaType.importantUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="importantUrgent">
         <div class="task" *ngFor="let task of importantUrgent">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
@@ -23,7 +23,7 @@
 
     <section class="container">
       <h4 class="priority-title">{{tasksAreas.urgentNotImportant}}</h4>
-      <div [id]="tasksAreas.urgentNotImportant" class="draggable-area" dragula="TASKS" [(dragulaModel)]="urgentNotImportant">
+      <div [id]="taskAreaType.urgentNotImportant" class="draggable-area" dragula="TASKS" [(dragulaModel)]="urgentNotImportant">
         <div class="task" *ngFor="let task of urgentNotImportant">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>
@@ -32,7 +32,7 @@
 
     <section class="container">
       <h4 class="priority-title"> {{tasksAreas.notImportantNotUrgent}}</h4>
-      <div [id]="tasksAreas.notImportantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="notImportantNotUrgent">
+      <div [id]="taskAreaType.notImportantNotUrgent" class="draggable-area" dragula="TASKS" [(dragulaModel)]="notImportantNotUrgent">
         <div class="task" *ngFor="let task of notImportantNotUrgent">
           <app-task [task]="task" (notifyTaskRemoval)="removeTask($event)" (notifyEdit)="editTask($event)"></app-task>
         </div>

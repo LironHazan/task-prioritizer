@@ -2,7 +2,8 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserStoreService} from '../../user-store.service';
 import {Subscription} from 'rxjs';
-import {Areas} from '../task/task.model';
+import {Areas, Task} from '../task/task.model';
+import {areas} from '../tasks.const';
 
 @Component({
   selector: 'app-new-task',
@@ -10,16 +11,16 @@ import {Areas} from '../task/task.model';
   styleUrls: ['./new-task.component.scss']
 })
 export class NewTaskComponent implements OnInit, OnDestroy {
-  public name: string;
-  public description: string;
-  public selectedArea: string;
-  public areas: string[] = [Areas.importantNotUrgent,
-    Areas.importantUrgent,
-    Areas.urgentNotImportant,
-    Areas.notImportantNotUrgent];
-  public openedBy: string;
+
   private userSubscription: Subscription;
-  private id: string;
+  public areas = areas;
+  public task: Task = {
+    name: null,
+    area: Areas.importantNotUrgent,
+    description: null,
+    areaType: null,
+    openedBy: null,
+  };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,
               private dialogRef: MatDialogRef<NewTaskComponent>,
@@ -28,31 +29,20 @@ export class NewTaskComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSubscription = this.userStoreService.getUserDetails()
       .subscribe(user => {
-        this.openedBy = user.email;
+        this.task.openedBy = user.email;
       });
 
     const {data} = this.data;
-    if (data && data.task) {
-      const {id, name, description, area} = data.task;
-      this.id = id;
-      this.name = name;
-      this.description = description;
-      this.selectedArea = area;
-    } else {
-      this.name = '';
-      this.description = '';
-      this.selectedArea = Areas.importantNotUrgent;
-    }
+    if (data && data.task) this.task = {...data.task};
   }
 
   onSave() {
-    const newItem = {name: this.name, description: this.description, area: this.selectedArea, openedBy: this.openedBy};
-    if (this.id) {
-      const editedItem = Object.assign(newItem, {id: this.id});
-      this.dialogRef.close(editedItem);
-      return;
+    let task = this.task;
+    task.areaType = areas.find(area => area.value === task.area).id;
+    if (this.task.id) {
+      task = Object.assign(task, {id: this.task.id});
     }
-    this.dialogRef.close(newItem);
+    this.dialogRef.close(task);
   }
 
   ngOnDestroy() {
