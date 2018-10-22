@@ -42,18 +42,19 @@ export class AppComponent implements OnInit {
   }
 
   login() {
-    let email;
+    let email, id;
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
       .then(res => {
-        const { user } = res;
+        const { user, additionalUserInfo } = res;
         email = user.email;
+        id = additionalUserInfo.profile['id'];
         try {
           localStorage.setItem('user', email);
         } catch (e) {
           console.log(e);
           this.user = null;
         }
-        this.userStoreService.setUserDetails({email});
+        this.userStoreService.setUserDetails({email, id});
       })
       .catch(err => console.log(err));
   }

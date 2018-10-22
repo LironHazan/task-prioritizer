@@ -53,6 +53,10 @@ export class TasksBoardComponent implements OnInit, OnDestroy {
       });
   }
 
+  trackById(index, item) {
+    return item.id;
+  }
+
   initViewGroups(tasks) {
     for (const task of tasks) {
       this.addItemToDraggableGroup(task);
