@@ -5,6 +5,7 @@
   --max-dialog-width: 36em;
   --tasks-h-margin: 20px;
   --page-h-margin: 20px;
+  --background: var(--background);
 }
 html, body {
   height: 100%;
@@ -12,7 +13,7 @@ html, body {
 body {
   margin: 0;
   font-family: "Andale Mono";
-  background-color: aliceblue;
+  background-color:  var(--background);
   display: flex;
   overflow: hidden;
 }

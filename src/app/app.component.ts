@@ -1,25 +1,30 @@
 import {Component, OnInit} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import {  faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import {  faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {  faSignInAlt, faCookie, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import {UserStoreService} from './user-store.service';
+import {ThemService} from './shared/them/them.service';
 
 @Component({
   selector: 'app-root',
   template: `
     <div class="app-container" *ngIf="afAuth.user | async as user; else showLogin">
-      <span>
+      <span class="header" appThem>
         <h2 class="greet">Hello {{ user.displayName }}!</h2>
-        <a class="logout-link" (click)="logout()">Logout
-          <fa-icon [icon]="faSignOutAlt"></fa-icon>
-        </a>
+        <div class="btns-flex-col">
+          <a class="logout-link" (click)="logout()">Logout
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+          </a>
+          <a class="logout-link" (click)="toggleThem()">Change Them!
+            <fa-icon [icon]="faCookie"></fa-icon>
+          </a>
+        </div>
       </span>
       <app-tasks-board></app-tasks-board>
     </div>
     <ng-template #showLogin>
-      <section class="login">
-        <p>Please login to the most awesome task prioritizing application!</p>
+      <section class="login" appThem>
+        <p>Please login to the most awesome tasks prioritizing application!</p>
         <button (click)="login()">Login with Google
           <fa-icon [icon]="faSign"></fa-icon>
         </button>
@@ -30,11 +35,14 @@ import {UserStoreService} from './user-store.service';
 })
 export class AppComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth,
-              private userStoreService: UserStoreService) {
+              private userStoreService: UserStoreService,
+              private themService: ThemService) {
   }
   user: string;
   faSign = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
+  faCookie = faCookie;
+  activeThem = 'oceanBlueThemProps';
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -66,4 +74,16 @@ export class AppComponent implements OnInit {
       }).catch(err => console.log(err));
   }
 
+  toggleThem() {
+    // refactor this ugly code :) for demo only
+    if (this.activeThem !== 'deepPurpleThemProps') {
+      this.activeThem = 'deepPurpleThemProps';
+      this.themService.setActiveThem('deepPurpleThemProps');
+    } else {
+      this.activeThem = 'oceanBlueThemProps';
+      this.themService.setActiveThem('oceanBlueThemProps');
+    }
+  }
+
 }
+
