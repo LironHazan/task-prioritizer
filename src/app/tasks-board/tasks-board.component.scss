@@ -9,7 +9,8 @@
   overflow: auto;
   height: 100%;
   margin-top: 10px;
-  background-color: cornflowerblue;
+  background-color: var(--tasks-background);
+  color: var(--text-color)
 }
 
 .priority-title {

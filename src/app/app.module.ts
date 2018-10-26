@@ -13,7 +13,6 @@ import { SharedModule } from './shared/shared.module';
 import { NewTaskComponent } from './tasks-board/new-task/new-task.component';
 import { MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
