@@ -9,7 +9,7 @@ import {ThemeService} from './shared/them/theme.service';
   selector: 'app-root',
   template: `
     <div class="app-container" *ngIf="afAuth.user | async as user; else showLogin">
-      <span class="header" appThem>
+      <span class="header" appTheme>
         <h2 class="greet">Hello {{ user.displayName }}!</h2>
         <div class="btns-flex-col">
           <a class="logout-link" (click)="logout()">Logout
@@ -23,7 +23,7 @@ import {ThemeService} from './shared/them/theme.service';
       <app-tasks-board></app-tasks-board>
     </div>
     <ng-template #showLogin>
-      <section class="login" appThem>
+      <section class="login" appTheme>
         <p>Please login to the most awesome tasks prioritizing application!</p>
         <button (click)="login()">Login with Google
           <fa-icon [icon]="faSign"></fa-icon>

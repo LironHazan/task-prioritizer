@@ -5,7 +5,7 @@ import {ThemeService} from './theme.service';
 import {Subscription} from 'rxjs';
 
 @Directive({
-  selector: '[appThem]'
+  selector: '[appTheme]'
 })
 export class ThemeDirective implements OnInit, OnDestroy {
 
