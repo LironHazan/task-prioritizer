@@ -8,7 +8,7 @@ import {
   MatDialogModule
 } from '@angular/material';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {ThemDirective} from './them/them.directive';
+import {ThemeDirective} from './them/theme.directive';
 
 @NgModule({
   imports: [
@@ -23,12 +23,12 @@ import {ThemDirective} from './them/them.directive';
   ],
   declarations: [
     DialogComponent,
-    ThemDirective],
+    ThemeDirective],
   exports:      [
     CommonModule,
     FormsModule,
     FontAwesomeModule,
-    ThemDirective
+    ThemeDirective
   ],
   entryComponents: [DialogComponent]
 

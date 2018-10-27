@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import {  faSignInAlt, faCookie, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import {UserStoreService} from './user-store.service';
-import {ThemService} from './shared/them/them.service';
+import {ThemeService} from './shared/them/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ import {ThemService} from './shared/them/them.service';
           <a class="logout-link" (click)="logout()">Logout
             <fa-icon [icon]="faSignOutAlt"></fa-icon>
           </a>
-          <a class="logout-link" (click)="toggleThem()">Change Them!
+          <a class="logout-link" (click)="toggleThem()">Change Theme!
             <fa-icon [icon]="faCookie"></fa-icon>
           </a>
         </div>
@@ -36,7 +36,7 @@ import {ThemService} from './shared/them/them.service';
 export class AppComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth,
               private userStoreService: UserStoreService,
-              private themService: ThemService) {
+              private themService: ThemeService) {
   }
   user: string;
   faSign = faSignInAlt;
