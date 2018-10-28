@@ -1,4 +1,4 @@
-export const thems = {
+export const themes = {
   oceanBlueThemProps : {
     '--background' : 'aliceblue',
     '--text-color': '#0F0F0F',

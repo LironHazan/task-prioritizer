@@ -4,7 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ThemService {
+export class ThemeService {
   private activeThem = new BehaviorSubject('oceanBlueThemProps');
 
   constructor() { }
