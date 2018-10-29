@@ -16,7 +16,6 @@ export class ThemeDirective implements OnInit, OnDestroy {
                private themService: ThemeService) { }
 
   ngOnInit() {
-    this.updateTheme(this.themeName);
     this.themServiceSubscription = this.themService.observeActiveThemeChane()
       .subscribe(themeName => {
         this.themeName = themeName ;
