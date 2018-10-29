@@ -9,11 +9,11 @@ export class ThemeService {
 
   constructor() { }
 
-  public getActiveTheme() {
+  public observeActiveThemeChane() {
     return this.activeThem.asObservable();
   }
 
-  public setActiveThem(name) {
+  public notifyActiveThemeChange(name) {
     this.activeThem.next(name);
   }
 }

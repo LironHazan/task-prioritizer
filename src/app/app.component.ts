@@ -15,7 +15,7 @@ import {ThemeService} from './shared/them/theme.service';
           <a class="logout-link" (click)="logout()">Logout
             <fa-icon [icon]="faSignOutAlt"></fa-icon>
           </a>
-          <a class="logout-link" (click)="toggleThem()">Change Theme!
+          <a class="logout-link" (click)="toggleTheme()">Change Theme!
             <fa-icon [icon]="faCookie"></fa-icon>
           </a>
         </div>
@@ -74,14 +74,14 @@ export class AppComponent implements OnInit {
       }).catch(err => console.log(err));
   }
 
-  toggleThem() {
-    // refactor this ugly code :) for demo only
+  toggleTheme() {
+    // refactor this ugly code, let the user select the theme from a dd :) for demos only
     if (this.activeThem !== 'deepPurpleThemProps') {
+      this.themService.notifyActiveThemeChange('deepPurpleThemProps');
       this.activeThem = 'deepPurpleThemProps';
-      this.themService.setActiveThem('deepPurpleThemProps');
     } else {
+      this.themService.notifyActiveThemeChange('oceanBlueThemProps');
       this.activeThem = 'oceanBlueThemProps';
-      this.themService.setActiveThem('oceanBlueThemProps');
     }
   }
 
